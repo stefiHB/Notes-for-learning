@@ -10,7 +10,44 @@ The following example is from the article
 > "...keep the logic within the subscription callbacks as small as possible"* 
 ~Giancarlo Buomprisco.
 
+##### Some rule of thumb:
+1. do not check whether a value is truthy within your subscription, you can easily handle it with the operator filter(Boolean)
+2. don’t transform data in your subscription
+3. side effects: for example, showing/hiding a loading icon, can be done with the tap or/and the finalize operators
 
-#### Not so good practice - example
+##### Not so good practice - snippet
 
+````javascript
+class UsersDashboardComponent {
+  users: User[];
+  activeUsers: [];
+  bannedUsers: [];
+  constructor(private service: UsersService) {
+     this.service.users$.subscribe(users => {
+        if (users) {
+          this.users = users;
+          this.activeUsers = users.filter(user => user.active);
+          this.bannedUsers = users.filter(user => user.banned);
+        }
+     });
+  }
+}
+````
+
+##### A better practice - snippet
+
+````javascript
+class UsersDashboardComponent {
+  users$ = this.service.users$.pipe(
+    filter(Boolean)
+  );
+  activeUsers$ = this.users$.pipe(
+    map(users => users.filter(user => user.active)),
+  );
+  bannedUsers$ = this.users$.pipe(
+    map(users => users.filter(user => user.banned)),
+  );
+  constructor(private service: UsersService) {}
+}
+````
 
