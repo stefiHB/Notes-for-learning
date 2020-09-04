@@ -10,12 +10,12 @@ The following example is from the article
 > "...keep the logic within the subscription callbacks as small as possible"* 
 ~Giancarlo Buomprisco.
 
-##### Some rule of thumb:
-1. do not check whether a value is truthy within your subscription, you can easily handle it with the operator filter(Boolean)
-2. don’t transform data in your subscription
-3. side effects: for example, showing/hiding a loading icon, can be done with the tap or/and the finalize operators
+### Some rule of thumb:
+* __Do not check whether a value is truthy within your subscription, you can easily handle it with the operator filter(Boolean)__
+* __Do not transform data in your subscription__
+* __Side effects: for example, showing/hiding a loading icon, can be done with the tap or/and the finalize operators__
 
-##### Not so good practice - snippet
+### Not so good practice - snippet
 
 ````javascript
 class UsersDashboardComponent {
