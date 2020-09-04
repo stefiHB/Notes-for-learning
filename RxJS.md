@@ -15,7 +15,7 @@ The following example is from the article
 * __Do not transform data in your subscription__
 * __Side effects: for example, showing/hiding a loading icon, can be done with the tap or/and the finalize operators__
 
-### Not so good practice - snippet
+#### Not so good practice
 
 ````javascript
 class UsersDashboardComponent {
@@ -34,7 +34,7 @@ class UsersDashboardComponent {
 }
 ````
 
-##### A better practice - snippet
+#### A better practice
 
 ````javascript
 class UsersDashboardComponent {
